@@ -28,9 +28,4 @@ public class UsersRestController {
         return new ResponseEntity<>(userService.findByUserName(principal.getName()),HttpStatus.OK);
     }
 
-    @GetMapping("/userpage")
-    public User oneUser(Principal principal) {
-        return userService.findByUserName(principal.getName());
-    }
-
 }

@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleServiceImp;
 import ru.kata.spring.boot_security.demo.service.UserServiceImp;
 
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,9 +32,13 @@ public class AdminsRestController {
        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> idUser(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/adduser")
-    public ResponseEntity<User> addUser(@RequestBody User user, @RequestParam(value = "role") ArrayList<Long> roles) {
-        roleService.saveRole(roles, user);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
         userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
@@ -47,11 +49,14 @@ public class AdminsRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user,
-                             @RequestParam(value = "role") ArrayList<Long> roles) {
-        roleService.saveRole(roles, user);
+
+    @PutMapping("/update")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+    @GetMapping("/roles")
+    public ResponseEntity<List<Role>> getAllRoles() {
+        return new ResponseEntity<>(roleService.getRoles(), HttpStatus.OK);
     }
 }

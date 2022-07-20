@@ -15,14 +15,13 @@
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <ul class="navbar-nav mb-2 mb-xl-0 me-auto">
-            <strong><span th:text="${user.email}" class="align-middle mr-1 navbar-text text-white"></span></strong>
+            <strong><span class="align-middle mr-1 navbar-text text-white" id="userEmail"></span></strong>
             <span class="align-middle mr-1 navbar-text text-white"> with roles: </span>
-            <span class="align-middle mr-1 navbar-text text-white" th:each="role : ${user.roles}"
-                  th:text="${role.toString() + ' '}"></span>
+            <span class="align-middle mr-1 navbar-text text-white" id="userRoles"></span>
         </ul>
         <ul class="navbar-nav float-lg-end">
             <li class="nav-item">
-                <a class="nav-link text-muted-light" th:href="@{/logout}">Logout</a>
+                <a class="nav-link text-muted-light" href="/logout">Logout</a>
             </li>
         </ul>
     </div>
@@ -62,13 +61,8 @@
                                 <th>Roles</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr th:each="user:${user}" class="table-active">
-                                <td th:text="${user.id}"></td>
-                                <td th:text="${user.name}"></td>
-                                <td th:text="${user.email}"></td>
-                                <td th:text="${#strings.setJoin(user.getAuthorities,  ' ')}"></td>
-                            </tr>
+                            <tbody id="userTable">
+
                             </tbody>
                         </table>
                     </div>
@@ -78,6 +72,7 @@
     </div>
 </div>
 
+<script src="user.js" type="text/javascript"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

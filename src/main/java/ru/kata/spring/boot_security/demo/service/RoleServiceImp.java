@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -27,6 +28,12 @@ public class RoleServiceImp implements RoleService {
     public void saveRole(ArrayList<Long> roles, User user) {
         Set<Role> roleArrayList = roleDAO.findByIdIn(roles);
         user.setRoles(roleArrayList);
+    }
+
+    @Transactional
+    @Override
+    public List<Role> getRoles() {
+        return roleDAO.findAll();
     }
 
 }
