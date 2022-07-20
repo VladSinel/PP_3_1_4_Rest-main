@@ -11,7 +11,7 @@ function thisAdmin() {
 
 thisAdmin();
 
-<!--top navbar email + logout-->
+//<!--top navbar email + logout-->
 function allUsers() {
     fetch("http://localhost:8081/api/admin")
         .then(res => res.json())
@@ -39,7 +39,7 @@ function allUsers() {
 
 allUsers();
 
-<!-- New User tab -->
+//<!-- New User tab -->
 formNewUser.addEventListener('submit', (e) => {
     e.preventDefault()
     let id = 0
