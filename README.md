@@ -1,2 +1,2 @@
-# PP_3_1_3_Bootstrap
-Java pre-project. Практическая задача 3.1.3
+# PP_3_1_4_Rest
+Java pre-project. Практическая задача 3.1.4
